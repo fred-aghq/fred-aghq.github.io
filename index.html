@@ -13,8 +13,8 @@
 </head>
 <body>
 <div id="main">
-    <h1>Random User Generator</h1>
-    <div>
+    <div class="container">
+        <h1>Random User Generator</h1>
         <form id="queryOptions">
             <div id="section-result-count">
                 <label for="result-count">Number of results:</label>
@@ -25,12 +25,24 @@
                 <input id="seed" type="text" name="seed"/>
             </div>
             <div id="section-gender">
-                <label for="gender">Gender:</label>
-                <select id="gender" name="gender">
-                    <option value="">Any</option>
-                    <option value="female">Female</option>
-                    <option value="male">Male</option>
-                </select>
+                <p>
+                    <label>
+                        <input name="gender" type="radio" value="" checked/>
+                        <span>Any</span>
+                    </label>
+                </p>
+                <p>
+                    <label>
+                        <input name="gender" type="radio" value="female" />
+                        <span>Female</span>
+                    </label>
+                </p>
+                <p>
+                    <label>
+                        <input name="gender" type="radio" value="male" />
+                        <span>Male</span>
+                    </label>
+                </p>
             </div>
             <div id="section-inc"></div>
             <div id="section-submit">
