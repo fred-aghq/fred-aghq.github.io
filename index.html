@@ -8,4 +8,9 @@
     <h1>Random User Generator</h1>
 
 </body>
+<script type="application/javascript">
+  fetch('https://randomuser.me/api/')
+    .then(response => response.json())
+    .then(data => console.log(data));
+</script>
 </html>
