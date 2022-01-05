@@ -9,20 +9,22 @@ const exclude = [
 ];
 
 
-const btnSubmit = document.getElementById('btnSubmit');
-const form = document.getElementById('queryOptions');
+function initForm() {
+  const btnSubmit = document.getElementById('btnSubmit');
+  const form = document.getElementById('queryOptions');
 
-form.addEventListener('submit', handleFormSubmit);
+  form.addEventListener('submit', handleFormSubmit);
 
-function handleFormSubmit(e) {
-  e.preventDefault();
-  btnSubmit.setAttribute('disabled', '');
+  function handleFormSubmit(e) {
+    e.preventDefault();
+    btnSubmit.setAttribute('disabled', '');
 
-  const seed = form.elements.seed.value;
+    const seed = form.elements.seed.value;
 
-  getRandomUser(include, exclude, seed)
-    .then(function (data) {
-      btnSubmit.removeAttribute('disabled');
-      console.log(data.results);
-    });
+    getRandomUser(include, exclude, seed)
+      .then(function (data) {
+        btnSubmit.removeAttribute('disabled');
+        console.log(data.results);
+      });
+  }
 }

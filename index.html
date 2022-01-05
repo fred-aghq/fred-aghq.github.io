@@ -3,17 +3,32 @@
 <head>
     <meta charset="UTF-8">
     <title>Random User Generator</title>
-    <script src="//cdnjs.cloudflare.com/ajax/libs/validate.js/0.13.1/validate.min.js"></script>
-
+    <script src="https://cdn.tailwindcss.com"></script>
 </head>
 <body>
-<h1>Random User Generator</h1>
-<form id="queryOptions">
+<div id="main">
+    <h1>Random User Generator</h1>
+    <div>
+        <form id="queryOptions">
+            <div id="section-seed">
+                <label for="seed">Seed: </label>
+                <input id="seed" type="text"/>
+            </div>
+            <div id="section-inc">
 
-<button id="btnSubmit" type="submit">GO!</button>
-</form>
+            </div>
+            <div id="section-ex">
+
+            </div>
+            <div id="section-submit">
+                <button id="btnSubmit" type="submit">GO!</button>
+            </div>
+        </form>
+    </div>
+</div>
 
 </body>
 <script src="/api.js"></script>
 <script src="/form.js"></script>
+<script type="text/javascript">initForm();</script>
 </html>
