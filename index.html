@@ -3,6 +3,10 @@
 <head>
     <meta charset="UTF-8">
     <title>Random User Generator</title>
+    <!--Import Google Icon Font-->
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
 
     <!-- Compiled and minified CSS -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
@@ -12,43 +16,95 @@
 
 </head>
 <body>
-<div id="main">
-    <div class="container">
+<div class="container">
+    <div class="row">
         <h1>Random User Generator</h1>
-        <form id="queryOptions">
-            <div id="section-result-count">
-                <label for="result-count">Number of results:</label>
-                <input id="result-count" type="text" name="results"/>
+        <form id="queryOptions" class="col s12">
+            <div class="col s6">
+                <div id="section-result-count">
+                    <div class="row">
+                        <div id="section-results" class="input-field col s3">
+                            <label for="result-count">Count</label>
+                            <input id="result-count" type="text" name="results" value="1"/>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div id="section-seed" class="input-field col s8">
+                            <label for="seed">Seed</label>
+                            <input id="seed" type="text" name="seed"/>
+                        </div>
+                    </div>
+                </div>
+                <div id="section-gender">
+                    <div class="row">
+                        <div class="col s12">
+                            <p>Gender:</p>
+                            <p>
+                                <label>
+                                    <input name="gender" type="radio" value="" checked/>
+                                    <span>Any</span>
+                                </label>
+                            </p>
+                            <p>
+                                <label>
+                                    <input name="gender" type="radio" value="female"/>
+                                    <span>Female</span>
+                                </label>
+                            </p>
+                            <p>
+                                <label>
+                                    <input name="gender" type="radio" value="male"/>
+                                    <span>Male</span>
+                                </label>
+                            </p>
+                        </div>
+                    </div>
+                </div>
             </div>
-            <div id="section-seed">
-                <label for="seed">Seed: </label>
-                <input id="seed" type="text" name="seed"/>
+            <div class="col s6">
+                <div class="row">
+                    <p>Include the following details:</p>
+                    <div id="section-inc"></div>
+                </div>
             </div>
-            <div id="section-gender">
-                <p>
-                    <label>
-                        <input name="gender" type="radio" value="" checked/>
-                        <span>Any</span>
-                    </label>
-                </p>
-                <p>
-                    <label>
-                        <input name="gender" type="radio" value="female" />
-                        <span>Female</span>
-                    </label>
-                </p>
-                <p>
-                    <label>
-                        <input name="gender" type="radio" value="male" />
-                        <span>Male</span>
-                    </label>
-                </p>
-            </div>
-            <div id="section-inc"></div>
-            <div id="section-submit">
-                <button id="btnSubmit" type="submit">GO!</button>
+            <div class="row">
+                <div class="col s12">
+                    <button id="btnSubmit" class="btn waves-effect waves-light" type="submit" name="action">GO!
+                        <i class="material-icons right">send</i>
+                    </button>
+                </div>
             </div>
         </form>
+    </div>
+    <div class="row">
+        <div class="col s12">
+            <div id="result-preloader" class="preloader-wrapper big">
+                <div class="spinner-layer spinner-blue-only">
+                    <div class="circle-clipper left">
+                        <div class="circle"></div>
+                    </div>
+                    <div class="gap-patch">
+                        <div class="circle"></div>
+                    </div>
+                    <div class="circle-clipper right">
+                        <div class="circle"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div id="results-container" class="col s12 grey lighten-2 hide">
+            <div class="row">
+                <a class="waves-effect waves-light btn" onclick="handleCopyText()">
+                    <i class="material-icons left">content_paste</i>
+                    Copy
+                </a>
+            </div>
+            <div class="row">
+                <pre style="max-height: 500px; overflow: scroll;">
+                    <code id="results-display"></code>
+                </pre>
+            </div>
+        </div>
     </div>
 </div>
 
