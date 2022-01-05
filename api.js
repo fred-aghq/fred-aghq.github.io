@@ -16,7 +16,6 @@ function prepareQueryString(parameters) {
     return '&'.concat(key, '=', queryString)
   });
 
-  console.log(queryStrings.join(''));
   return queryStrings.join('');
 }
 

@@ -1,28 +1,24 @@
-const fields = [
-  'gender',
-  'name',
-  'location',
-  'email',
-  'login',
-  'registered',
-  'dob',
-  'phone',
-  'cell',
-  'id',
-  'picture',
-  'nat',
-];
-
 function initForm() {
   const btnSubmit = document.getElementById('btnSubmit');
   const form = document.getElementById('queryOptions');
+  const preloader = document.getElementById('result-preloader');
 
   generateIncSection();
   form.addEventListener('submit', handleFormSubmit);
 
   function handleFormSubmit(e) {
     e.preventDefault();
+
+    // disable submit
     btnSubmit.setAttribute('disabled', '');
+    btnSubmit
+      .classList
+      .add('disabled');
+
+    // show preloader
+    preloader
+      .classList
+      .add('active');
 
     // @TODO: get/parse params from event
     const formData = new FormData(e.target);
@@ -38,7 +34,17 @@ function initForm() {
     getRandomUser(params)
       .then(function (data) {
         btnSubmit.removeAttribute('disabled');
-        console.log(data.results);
+        btnSubmit.classList.remove('disabled');
+        preloader.classList.remove('active');
+        document.getElementById('results-display')
+          .appendChild(
+            document.createTextNode(
+              JSON.stringify(data, null, 2))
+          );
+
+        document.getElementById('results-container')
+          .classList
+          .remove('hide');
       });
   }
 
@@ -53,6 +59,21 @@ function initForm() {
 
 // Dynamically generate the list of fields to include in the response
   function generateIncSection() {
+    const fields = [
+      'gender',
+      'name',
+      'location',
+      'email',
+      'login',
+      'registered',
+      'dob',
+      'phone',
+      'cell',
+      'id',
+      'picture',
+      'nat',
+    ];
+
     const incSection = document.getElementById('section-inc');
 
     fields.forEach(function (fieldName, _) {
@@ -83,4 +104,12 @@ function initForm() {
       incSection.appendChild(wrapper);
     });
   }
+}
+
+function handleCopyText() {
+  /* Get the text field */
+  const copyText = document.getElementById("results-display").firstChild;
+
+  /* Copy the text inside the text field */
+  navigator.clipboard.writeText(copyText.nodeValue);
 }
