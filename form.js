@@ -36,11 +36,15 @@ function initForm() {
         btnSubmit.removeAttribute('disabled');
         btnSubmit.classList.remove('disabled');
         preloader.classList.remove('active');
-        document.getElementById('results-display')
-          .appendChild(
-            document.createTextNode(
-              JSON.stringify(data, null, 2))
-          );
+        const display = document.getElementById('results-display');
+
+        display.childNodes.forEach(function (element) {
+          element.remove();
+        });
+        display.appendChild(
+          document.createTextNode(
+            JSON.stringify(data, null, 2))
+        );
 
         document.getElementById('results-container')
           .classList
