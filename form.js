@@ -28,7 +28,7 @@ function initForm() {
     // @TODO: get/parse params from event
     const formData = new FormData(e.target);
 
-    // bit cheeky but without a library or validator...
+    // bit cheeky but nice syntactic sugar under time constraints
     const params = {
       ...parseField(formData, 'results'),
       ...parseField(formData, 'seed'),
