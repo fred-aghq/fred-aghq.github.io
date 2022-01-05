@@ -10,12 +10,23 @@
     <h1>Random User Generator</h1>
     <div>
         <form id="queryOptions">
+            <div id="section-result-count">
+                <label for="result-count">Number of results:</label>
+                <input id="result-count" type="text" name="results"/>
+            </div>
             <div id="section-seed">
                 <label for="seed">Seed: </label>
-                <input id="seed" type="text"/>
+                <input id="seed" type="text" name="seed"/>
+            </div>
+            <div id="section-gender">
+                <label for="gender">Gender:</label>
+                <select id="gender" name="gender">
+                    <option value="">Any</option>
+                    <option value="female">Female</option>
+                    <option value="male">Male</option>
+                </select>
             </div>
             <div id="section-inc">
-
             </div>
             <div id="section-exc">
 
