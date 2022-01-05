@@ -1,16 +1,32 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns="http://www.w3.org/1999/html">
 <head>
     <meta charset="UTF-8">
     <title>Random User Generator</title>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/validate.js/0.13.1/validate.min.js"></script>
+    <script src="/api.js"></script>
 </head>
 <body>
-    <h1>Random User Generator</h1>
+<h1>Random User Generator</h1>
 
 </body>
+
 <script type="application/javascript">
-  fetch('https://randomuser.me/api/')
-    .then(response => response.json())
-    .then(data => console.log(data));
+    const include = [
+      'gender',
+      'name',
+      'email',
+    ];
+
+    const exclude = [
+      'nat',
+    ];
+
+    const seed = 'foobar';
+
+    getRandomUser(include, exclude, seed).then(function(data) {
+      console.log(data.results[0]);
+    });
+
 </script>
 </html>
