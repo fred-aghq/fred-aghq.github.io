@@ -8,7 +8,6 @@ const exclude = [
   'nat',
 ];
 
-const seed = 'foobar';
 
 const btnSubmit = document.getElementById('btnSubmit');
 const form = document.getElementById('queryOptions');
@@ -18,6 +17,8 @@ form.addEventListener('submit', handleFormSubmit);
 function handleFormSubmit(e) {
   e.preventDefault();
   btnSubmit.setAttribute('disabled', '');
+
+  const seed = form.elements.seed.value;
 
   getRandomUser(include, exclude, seed)
     .then(function (data) {
