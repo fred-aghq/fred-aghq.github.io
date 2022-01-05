@@ -1,18 +1,27 @@
 function prepareQueryString(parameters) {
-  const include = parameters.include?.length > 0 ? '?inc='.concat(parameters.include.join(',')) : '';
-  const exclude = parameters.exclude?.length > 0 ? '&exc='.concat(parameters.exclude.join(',')) : '';
-  const seed = parameters.seed?.length > 0 ? '&seed='.concat(parameters.seed) : '';
+  const queryStrings = Object.keys(parameters).map(function(key, index) {
+    let queryString = '';
 
-  return ''.concat(include, exclude, seed);
+    if (Array.isArray(parameters[key])) {
+      queryString = parameters[key].join(',');
+    }
+    else {
+      queryString = parameters[key];
+    }
+
+    if (index === 0) {
+      return '?'.concat(key, '=', queryString)
+    }
+
+    return '&'.concat(key, '=', queryString)
+  });
+
+  console.log(queryStrings.join(''));
+  return queryStrings.join('');
 }
 
-async function getRandomUser(include = [], exclude = [], seed = '') {
-  const url = 'https://randomuser.me/api/'.concat(
-    prepareQueryString({
-      include: include,
-      exclude: exclude,
-      seed: seed,
-    }));
+async function getRandomUser(parameters) {
+  const url = 'https://randomuser.me/api/'.concat(prepareQueryString(parameters));
 
   const response = await fetch(url, {
     method: 'GET',
