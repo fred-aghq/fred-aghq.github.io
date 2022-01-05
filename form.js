@@ -18,7 +18,6 @@ function initForm() {
   const form = document.getElementById('queryOptions');
 
   generateIncSection();
-
   form.addEventListener('submit', handleFormSubmit);
 
   function handleFormSubmit(e) {
@@ -42,41 +41,46 @@ function initForm() {
         console.log(data.results);
       });
   }
-}
 
-function parseField(form, fieldName) {
-  return (form.get(`${fieldName}`).length > 0) && {[fieldName]: form.get(fieldName)};
-}
+  function parseField(form, fieldName) {
+    return (form.get(`${fieldName}`).length > 0) && {[fieldName]: form.get(fieldName)};
+  }
 
-function parseCheckboxes(form, fieldName) {
-  const checked = form.getAll(fieldName);
-  return (checked.length > 0) && {[fieldName]: checked};
-}
+  function parseCheckboxes(form, fieldName) {
+    const checked = form.getAll(fieldName);
+    return (checked.length > 0) && {[fieldName]: checked};
+  }
 
-function generateIncSection()
-{
-  const incSection = document.getElementById('section-inc');
+// Dynamically generate the list of fields to include in the response
+  function generateIncSection() {
+    const incSection = document.getElementById('section-inc');
 
-  fields.forEach(function(fieldName, _) {
-    const labelText = fieldName[0].toUpperCase() + fieldName.substring(1);
+    fields.forEach(function (fieldName, _) {
+      // naming
+      const labelText = fieldName[0].toUpperCase() + fieldName.substring(1);
 
-    const checkbox = document.createElement('input');
-    checkbox.setAttribute('id', 'inc-' + fieldName);
-    checkbox.setAttribute('name', 'inc');
-    checkbox.setAttribute('type', 'checkbox');
-    checkbox.setAttribute('value', fieldName);
-    checkbox.setAttribute('style', 'display: block;');
+      // inner span
+      const span = document.createElement('span');
+      span.appendChild(document.createTextNode(labelText));
 
-    const label = document.createElement('label')
-    label.setAttribute('for', 'inc-' + fieldName)
-    label.appendChild(document.createTextNode(labelText));
+      // actual checkbox
+      const checkbox = document.createElement('input');
+      checkbox.setAttribute('id', 'inc-' + fieldName);
+      checkbox.setAttribute('name', 'inc');
+      checkbox.setAttribute('type', 'checkbox');
+      checkbox.setAttribute('value', fieldName);
 
-    incSection.appendChild(
-      label
-    )
+      // the label element
+      const label = document.createElement('label')
+      label.setAttribute('for', 'inc-' + fieldName)
+      label.appendChild(checkbox);
+      label.appendChild(span);
 
-    incSection.appendChild(
-      checkbox
-    )
-  });
+      // wrap it in a p tag for materialize
+      const wrapper = document.createElement('p');
+      wrapper.appendChild(label);
+
+      incSection.appendChild(wrapper);
+    });
+  }
 }
